@@ -37,8 +37,8 @@ h2 {
     }
   }
 canvas {
-    z-index: 2;
     position: absolute;
     left: 0;
     top: 0;
+    background-color: black;
 }
