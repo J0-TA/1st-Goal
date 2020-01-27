@@ -47,16 +47,19 @@ const game = {
     drawAll() {
       this.background.draw();
       this.player.draw();
+      this.rivals.forEach(rival => rival.draw())
     },
   
     moveAll() {
       this.background.move();
       this.player.move();
+      this.rivals.forEach(rival => rival.move())
     },
   
     reset() {
       this.background = new Background(this.ctx);
-      this.player = new Player(this.ctx, this.keys);    
+      this.player = new Player(this.ctx, this.keys);
+      this.rivals.push(new Rival (this.ctx, this.width/2, 0));
     },
   
     clear() {

@@ -45,7 +45,7 @@ class Player {
         } if (game.keys.arrowRight === true && this.posX < 1200){
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
-            this.posY -= this.velY;
+            this.posY -= this.velY *1.8; 
             this.stamina -= 3
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
             this.posY += this.velY * 3;
