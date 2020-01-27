@@ -16,7 +16,7 @@ class Player {
 
         this.keys = keys;
         this.velX = 5;
-        this.velY = 5;
+        this.velY = 1;
         
         this.setListeners();
     }
@@ -38,17 +38,21 @@ class Player {
     }
 
     move() {
-        if (game.keys.arrowLeft === true){
+        if (game.keys.arrowLeft === true && this.posX > 120){
             this.posX -= this.velX;
-        } if (game.keys.arrowRight === true){
+        } if (game.keys.arrowRight === true && this.posX < 1200){
             this.posX += this.velX;
-        } if (game.keys.arrowUp === true) {
-            this.posY -= this.velY
-    }
+        } if (game.keys.arrowUp === true){
+            this.posY -= this.velY;
+        } if (game.keys.arrowDown === true && this.posY < game.height - 200){
+            this.posY += this.velY * 3;
+        } this.posY -= this.velY
+        if (this.posY < 50) {this.posY = 50;
+       } 
     }
 
     animate(framesCounter) {
-        if (framesCounter % 11 == 0) {
+        if (framesCounter % 12 == 0) {
             this.image.framesIndex++;
         }
         if (this.image.framesIndex > this.image.frames - 1) {
