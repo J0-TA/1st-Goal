@@ -2,23 +2,32 @@ class Player {
     constructor(ctx, keys) {
       this.ctx = ctx;
   
-      this.width = 80;
-      this.height = 110;
+      this.width = 130;
+      this.height = 143;
   
       this.image = new Image();
-      this.image.src = "./img/playersSprite.png";
+      this.image.src = "./img/playerSprite.png";
   
       this.posX = game.width/2 - this.width/2;
       this.posY = game.height - 200;
 
-      this.image.frames = 7.6;
+      this.image.frames = 7;
       this.image.framesIndex = 0;
   
       this.keys = keys;
       this.vel = 1;
       this.animate(game.framesCounter);
+      
+      this.setListeners();
     }
-  
+    moveRight() {
+        this.posX += 20;
+      }
+
+    moveLeft() {
+        this.posX -= 20;
+      };
+    
     draw(framesCounter) {
       this.ctx.drawImage(
         this.image,
@@ -43,4 +52,18 @@ class Player {
         this.image.framesIndex = 0;
       }
     }
-  }
+
+    setListeners() {
+        document.addEventListener("keydown", e => {
+          switch (e.keyCode) {
+            case this.keys.LEFT:
+              this.moveLeft
+              break;
+            case this.keys.RIGHT:
+                this.moveRight
+              console.log("DERECHA!");;
+              break;
+          }
+        });
+    }
+}
