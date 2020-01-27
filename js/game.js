@@ -6,8 +6,8 @@ const game = {
     FPS: 60,
     framesCounter: 0,
     rivals: [],
-    // keys: {
-    // },
+    keys: {
+    },
   
     init() {
       this.canvas = document.getElementById("Board");
@@ -39,6 +39,7 @@ const game = {
   
     drawAll() {
       this.background.draw();
+      this.player.draw();
     },
   
     moveAll() {
@@ -46,7 +47,8 @@ const game = {
     },
   
     reset() {
-      this.background = new Background(this.ctx);    
+      this.background = new Background(this.ctx);
+      this.player = new Player(this.ctx, this.keys);    
     },
   
     clear() {

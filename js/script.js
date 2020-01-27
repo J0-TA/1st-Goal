@@ -3,6 +3,5 @@ window.onload = () => {
         if(e.keyCode === 32){
             game.init();
         }
-        
     }
 }

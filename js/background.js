@@ -1,8 +1,8 @@
 class Background {
     constructor(ctx) {
       this.ctx = ctx;
-      this.width = 869;
-      this.height = 1571;
+      this.width = 1216;
+      this.height = 2200;
   
       this.image = new Image();
       this.image.src = `./img/field.png`;
@@ -10,7 +10,7 @@ class Background {
       this.posX = game.width/2 - this.width/2;
       this.posY = game.height - this.height;
   
-      this.velY = 1;
+      this.velY = 0.8;
     }
   
     draw() {
