@@ -25,7 +25,7 @@ const game = {
         this.framesCounter++;
         this.clear();
         this.drawAll();
-        // this.moveAll();
+        this.moveAll();
       }, 1000 / this.FPS);
     },
   
@@ -38,14 +38,15 @@ const game = {
     },
   
     drawAll() {
-      background.draw();
+      this.background.draw();
     },
   
-    // moveAll() {
-    //   this.background.move();
-    // },
+    moveAll() {
+      this.background.move();
+    },
   
     reset() {
+      this.background = new Background(this.ctx);    
     },
   
     clear() {
