@@ -7,13 +7,13 @@ const game = {
     framesCounter: 0,
     rivals: [],
     keys: {
-      TOP:38,
-      DOWN:40,
-      LEFT:37,
-      RIGHT:38,
-      ACTION:83,
-      JUMPLEFT:65,
-      JUMPRIGHT:68
+      arrowUp:false,
+      arrowDown:false,
+      arrowLeft:false,
+      arrowRight:false,
+      action:false,
+      jumpLeft:false,
+      jumpright:false
     },
   
     init() {
@@ -51,6 +51,7 @@ const game = {
   
     moveAll() {
       this.background.move();
+      this.player.move();
     },
   
     reset() {

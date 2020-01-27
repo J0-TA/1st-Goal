@@ -10,7 +10,7 @@ class Background {
       this.posX = game.width/2 - this.width/2;
       this.posY = game.height - this.height;
   
-      this.velY = 0.8;
+      this.velY = 1;
     }
   
     draw() {
