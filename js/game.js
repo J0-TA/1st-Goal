@@ -6,6 +6,7 @@ const game = {
   FPS: 60,
   framesCounter: 0,
   rivals: [],
+  score: 0,
   keys: {
     arrowUp: false,
     arrowDown: false,
@@ -22,6 +23,7 @@ const game = {
     this.canvas = document.getElementById("Board");
     this.ctx = this.canvas.getContext("2d");
     this.setDimensions();
+    scoreboard.init(this.ctx);
     this.start();
   },
 
@@ -38,7 +40,8 @@ const game = {
       this.gameOver();
       this.touchdown();
       console.log(this.player.stamina)
-
+      this.score += 0.1;
+      this.drawScore();
     }, 1000 / this.FPS);
   },
 
@@ -53,7 +56,8 @@ const game = {
   drawAll() {
     this.background.draw();
     this.player.draw();
-    this.rivals.forEach(rival => rival.draw())
+    this.rivals.forEach(rival => rival.draw());
+    this.drawStamine();
   },
 
   moveAll() {
@@ -104,6 +108,7 @@ const game = {
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
+
   gameOver() {
     if (this.player.stamina <= 0){
     clearInterval(this.interval);
@@ -111,8 +116,22 @@ const game = {
   },
 
   touchdown (){
-    if (this.player.posY < 10 && this.background.posY >= 0)
+    if (this.player.posY < 90 && this.background.posY >= 0)
     alert(`TOUCHDOWN!`)
+  },
+
+  drawScore() {
+    scoreboard.update(this.score);
+  },
+  drawStamine(){
+  this.ctx.font = "40px Verdana";
+  this.ctx.fillStyle = "black";
+  this.ctx.fillText(`Stamina`, 1100, 50);
+  this.ctx.fillStyle="#1AACD7";
+  this.ctx.fillRect(game.width-200,25,(this.player.stamina/150)*150,25);
+  this.ctx.strokeStyle = "black";
+  this.ctx.lineWidth = 2;
+  this.ctx.strokeRect(game.width-200,25,(this.player.stamina/150)*150,25)
   }
 };
 
