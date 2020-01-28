@@ -55,29 +55,36 @@ const game = {
     this.player.move();
     this.rivals.forEach(rival => {
       if (rival.posY < this.player.posY) {
-        rival.posY += rival.velY*2
+        rival.posY += rival.velY*3
       }
       if (rival.posY > this.player.posY) {
-        rival.posY -= rival.velY
+        rival.posY -= rival.velY*0.8
       }
-    
-      // if (!enemigosJuntos) {
         if (rival.posX < this.player.posX) {
           rival.posX += rival.velX
         }
         if (rival.posX > this.player.posX) {
           rival.posX -= rival.velX
         }
-      // }
-    });
+      });
   },
 
   reset() {
     this.background = new Background(this.ctx);
     this.player = new Player(this.ctx, this.keys);
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), 0), new Rival(this.ctx, randomInt(120, 1200), 0));
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 150)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 150)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 150)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 150)))
+    this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 2000)))
+    this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 2000)))
+    this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 2000)))
+    this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 2000, - 3000)))
+    this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 2000, - 3000)))
+    this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 2000, - 3000)))
+    this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 2000, - 3000)))
   },
-
+  
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
