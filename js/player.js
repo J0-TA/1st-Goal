@@ -64,6 +64,15 @@ class Player {
             this.image.framesIndex = 0;
         }
     }
+    jumpLeft(){
+      this.posX -= 80
+      this.stamina -= 5
+    }
+
+    jumpRight(){
+      this.posX += 80
+      this.stamina -= 5
+    }
 
     setListeners() {
         document.addEventListener("keydown", e => {
@@ -102,19 +111,31 @@ class Player {
             this.keys.arrowDown = false;
           }
         });
-        // document.addEventListener("keydown", e => {
-        //   e.preventDefault();
-        //   if (e.keyCode === 32) {
-        //     this.keys.space = true;
-        //     this.shoot();
-        //     this.sound.play();
-        //   }
-        // });
-        // document.addEventListener("keyup", e => {
-        //   e.preventDefault();
-        //   if (e.keyCode === 32) {
-        //     this.keys.space = false;
-        //   }
-        // });
-      }
+        document.addEventListener("keydown", e => {
+          e.preventDefault();
+          if (e.keyCode === 65) {
+            this.keys.a = true;
+            this.jumpLeft();
+          }
+        });
+        document.addEventListener("keyup", e => {
+          e.preventDefault();
+          if (e.keyCode === 65) {
+            this.keys.a = false;
+          }
+        });
+        document.addEventListener("keydown", e => {
+          e.preventDefault();
+          if (e.keyCode === 68) {
+            this.keys.d = true;
+            this.jumpRight();
+          }
+        });
+        document.addEventListener("keyup", e => {
+          e.preventDefault();
+          if (e.keyCode === 68) {
+            this.keys.d = false;
+          }
+        });
+    }
 }

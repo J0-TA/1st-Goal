@@ -13,7 +13,9 @@ const game = {
     arrowRight: false,
     action: false,
     jumpLeft: false,
-    jumpright: false
+    jumpright: false,
+    a: false,
+    d: false
   },
 
   init() {
