@@ -19,7 +19,7 @@ class Rival {
         this.velX = 1.8
         this.velY = 0.7
 
-        this.strenght = 2;
+        this.strenght = 0.5;
         this.playerX = playerX;
         this.playerY = playerY;
     }
@@ -74,7 +74,7 @@ class DefensiveLine extends Rival {
         this.velX = 1.2
         this.velY = 0.5
 
-        this.strenght = 5;
+        this.strenght = 1;
         this.playerX = playerX;
         this.playerY = playerY;  
     }
@@ -101,7 +101,7 @@ class DefensiveBack extends Rival {
         this.velX = 2
         this.velY = 1
 
-        this.strenght = 1;
+        this.strenght = 0.2;
         this.playerX = playerX;
         this.playerY = playerY;  
     }

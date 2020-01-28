@@ -20,7 +20,7 @@ class Player {
         
         this.setListeners();
 
-        this.stamina = 15000;
+        this.stamina = 1500;
     }
 
     draw() {
@@ -46,9 +46,9 @@ class Player {
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
             this.posY -= this.velY *2; 
-            this.stamina -= 0.5
+            this.stamina -= 1
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
-            this.posY += this.velY * 3;
+            this.posY += this.velY * 2;
             if (this.stamina < 150){ this.stamina += 0.2}
         } this.posY -= this.velY
         this.stamina -=0.1

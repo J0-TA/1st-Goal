@@ -50,7 +50,7 @@ const game = {
     this.height = window.innerHeight;
     this.canvas.width = this.width;
     this.canvas.height = this.height;
-    document.querySelector('main').style.zIndex = "0";
+    document.querySelector('main').style.display = "none";
   },
 
   drawAll() {
@@ -113,13 +113,21 @@ const game = {
   gameOver() {
     if (this.player.stamina <= 0){
     clearInterval(this.interval);
+    this.canvas.style.opacity = `0`;
+    document.querySelector(`#gameover`).style.display = `flex`;
+    document.querySelector(`#gameover`).style.opacity = `1`;
+    document.querySelector(`#gameover h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
   }
   },
 
   touchdown (){
     if (this.player.posY < 90 && this.background.posY >= 0){
     clearInterval(this.interval);
-    // Aquí activaremos el display del elemento del DOM de victoria
+    this.canvas.style.opacity = `0`;
+    document.querySelector(`#touchdown`).style.display = `flex`;
+    document.querySelector(`#touchdown`).style.opacity = `1`;
+    document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
+    // APLICAR SONIDO TOUCHDOWN
   }
   },
 
@@ -129,10 +137,10 @@ const game = {
   drawStamine(){
   this.ctx.fillText(`Stamina`, 1050, 50);
   this.ctx.fillStyle="#1AACD7";
-  this.ctx.fillRect(game.width-200,25,(this.player.stamina/15000)*150,25);
+  this.ctx.fillRect(game.width-200,25,(this.player.stamina/1500)*150,25);
   this.ctx.strokeStyle = "black";
   this.ctx.lineWidth = 2;
-  this.ctx.strokeRect(game.width-200,25,(this.player.stamina/15000)*150,25)
+  this.ctx.strokeRect(game.width-200,25,(this.player.stamina/1500)*150,25)
   }
 };
 
