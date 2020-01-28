@@ -117,10 +117,10 @@ const game = {
   },
 
   touchdown (){
-    if (this.player.posY < 90 && this.background.posY >= 0)
+    if (this.player.posY < 90 && this.background.posY >= 0){
     clearInterval(this.interval);
-
-
+    // Aquí activaremos el display del elemento del DOM de victoria
+  }
   },
 
   drawScore() {
