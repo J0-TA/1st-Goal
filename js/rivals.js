@@ -1,7 +1,7 @@
 class Rival {
     constructor(ctx, posX, posY, playerX, playerY) {
         this.ctx = ctx;
-        this.size = 2;
+        this.size = 2.2;
         this.width = 110 * this.size/2;
         this.height = 120 * this.size/2;
 
@@ -16,11 +16,10 @@ class Rival {
         this.image.frames = 7;
         this.image.framesIndex = 0;
 
-        this.velX = 2 * this.speed;
-        this.velY = 0.5 * this.speed;
+        this.velX = 2
+        this.velY = 1
 
         this.strenght = 2;
-        this.speed = 1.8
         this.playerX = playerX;
         this.playerY = playerY;
     }
@@ -41,15 +40,7 @@ class Rival {
         this.animate(game.framesCounter);
     }
 
-    move() {
-        this.posY += this.speed
-        if (this.posX < player.posX){
-        this.posX += this.velX
-        } 
-        if (this.posX > player.posX){
-            this.posX -= this.velX
-        }
-    }
+
 
     animate(framesCounter) {
         if (framesCounter % 12 == 0) {

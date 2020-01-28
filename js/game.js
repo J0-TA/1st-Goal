@@ -53,13 +53,21 @@ const game = {
     moveAll() {
       this.background.move();
       this.player.move();
-      this.rivals.forEach(rival => rival.move())
+      this.rivals.forEach(rival => {
+      rival.posY += rival.velY
+      if (rival.posX < this.player.posX){
+      rival.posX += rival.velX
+      } 
+      if (rival.posX > this.player.posX){
+          rival.posX -= rival.velX
+      }
+      });
     },
   
     reset() {
       this.background = new Background(this.ctx);
       this.player = new Player(this.ctx, this.keys);
-      this.rivals.push(new Rival (this.ctx, this.width/2, 0));
+      this.rivals.push(new Rival (this.ctx, this.width/2 + 50, 0),new Rival (this.ctx, this.width/2 - 50, 0));
     },
   
     clear() {
