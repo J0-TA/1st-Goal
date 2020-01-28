@@ -3,7 +3,7 @@ const scoreboard = {
   
     init(ctx) {
       this.ctx = ctx;
-      this.ctx.font = "50px Verdana";
+      this.ctx.font = "40px Verdana";
     },
   
     update(score) {

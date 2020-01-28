@@ -39,7 +39,7 @@ const game = {
       this.moveAll();
       this.gameOver();
       this.touchdown();
-      console.log(this.player.stamina)
+      this.tackles();
       this.score += 0.1;
       this.drawScore();
     }, 1000 / this.FPS);
@@ -95,14 +95,15 @@ const game = {
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
   },
 
-  collision() {
-    return this.rivals.some(obs => {
-      return (
-        this.player.posX + this.player.width >= obs.posX &&
-        this.player.posY + this.player.height >= obs.posY &&
-        this.player.posX <= obs.posX + obs.width
-      );
-    });
+  tackles() {
+    this.rivals.some(rival => {
+    if(this.player.posX < rival.posX + rival.width  && 
+      this.player.posX + this.player.width  > rival.posX &&
+      this.player.posY < rival.posY + rival.height && 
+      this.player.posY + this.player.height > rival.posY) {
+        this.player.stamina -= rival.strenght
+      }
+    })
   },
   
   clear() {
@@ -117,21 +118,21 @@ const game = {
 
   touchdown (){
     if (this.player.posY < 90 && this.background.posY >= 0)
-    alert(`TOUCHDOWN!`)
+    clearInterval(this.interval);
+
+
   },
 
   drawScore() {
     scoreboard.update(this.score);
   },
   drawStamine(){
-  this.ctx.font = "40px Verdana";
-  this.ctx.fillStyle = "black";
-  this.ctx.fillText(`Stamina`, 1100, 50);
+  this.ctx.fillText(`Stamina`, 1050, 50);
   this.ctx.fillStyle="#1AACD7";
-  this.ctx.fillRect(game.width-200,25,(this.player.stamina/150)*150,25);
+  this.ctx.fillRect(game.width-200,25,(this.player.stamina/15000)*150,25);
   this.ctx.strokeStyle = "black";
   this.ctx.lineWidth = 2;
-  this.ctx.strokeRect(game.width-200,25,(this.player.stamina/150)*150,25)
+  this.ctx.strokeRect(game.width-200,25,(this.player.stamina/15000)*150,25)
   }
 };
 

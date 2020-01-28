@@ -20,7 +20,7 @@ class Player {
         
         this.setListeners();
 
-        this.stamina = 150;
+        this.stamina = 15000;
     }
 
     draw() {
