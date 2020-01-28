@@ -15,12 +15,12 @@ class Player {
         this.image.framesIndex = 0;
 
         this.keys = keys;
-        this.velX = 5;
+        this.velX = 3;
         this.velY = 1;
         
         this.setListeners();
 
-        this.stamina = 100;
+        this.stamina = 150;
     }
 
     draw() {
@@ -45,13 +45,13 @@ class Player {
         } if (game.keys.arrowRight === true && this.posX < 1200){
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
-            this.posY -= this.velY *1.8; 
-            this.stamina -= 3
+            this.posY -= this.velY *2; 
+            this.stamina -= 0.5
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
             this.posY += this.velY * 3;
-            this.stamina += 5
+            if (this.stamina < 150){ this.stamina += 0.2}
         } this.posY -= this.velY
-        this.stamina -=1
+        this.stamina -=0.1
         if (this.posY < 50) {this.posY = 50;
        } 
     }
