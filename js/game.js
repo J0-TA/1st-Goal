@@ -99,7 +99,7 @@ const game = {
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
-    this.obstacles = [];
+    this.powerUps = [];
   },
 
   tackles() {
@@ -141,9 +141,11 @@ const game = {
     if (this.player.stamina <= 0){
     clearInterval(this.interval);
     this.canvas.style.opacity = `0`;
+    this.canvas.style.display = `none`;
     document.querySelector(`#gameover`).style.display = `flex`;
     document.querySelector(`#gameover`).style.opacity = `1`;
     document.querySelector(`#gameover h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
+    document.querySelector(`.repeat`).addEventListener("click", function(){document.location.reload(true)});
     // Aplicar sonido Gameover
   }
   },
@@ -152,10 +154,12 @@ const game = {
     if (this.player.posY < 90 && this.background.posY >= 0){
     clearInterval(this.interval);
     this.canvas.style.opacity = `0`;
+    this.canvas.style.display = `none`;
     document.querySelector(`#touchdown`).style.display = `flex`;
     document.querySelector(`#touchdown`).style.opacity = `1`;
     document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score + this.player.stamina)}.`
-    }
+    document.querySelector(`.repeat`).addEventListener("click", function(){document.location.reload(true)});
+  }
     // APLICAR SONIDO TOUCHDOWN
   
   },

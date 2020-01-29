@@ -113,3 +113,7 @@ canvas {
     cursor:pointer;
     border: 1px solid black;
 }
+
+.repeat:focus {
+    border: 0;
+}
