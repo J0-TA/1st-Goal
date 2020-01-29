@@ -67,11 +67,21 @@ class Player {
     jumpLeft(){
       this.posX -= 80
       this.stamina -= 10
+      const jumpSound = new Howl({
+        src: ['sounds/boing.m4a'],
+        volume: 0.4,
+        autoplay: true
+      });
     }
 
     jumpRight(){
       this.posX += 80
       this.stamina -= 10
+      const jumpSound = new Howl({
+        src: ['sounds/boing.m4a'],
+        volume: 0.4,
+        autoplay: true
+      });
     }
 
     setListeners() {

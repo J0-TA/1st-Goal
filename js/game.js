@@ -30,18 +30,20 @@ const game = {
 
     this.setDimensions();
     scoreboard.init(this.ctx);
-    // let intro = new Sound (intro, `../sounds/Intro.m4a`)
-    // intro.play()
+    const music = new Howl({
+      src: ['sounds/Intro.m4a'],
+      autoplay: true,
+      loop: true,
+      volume: 0.2,
+    });
     this.start();
-    //iniciar audio juego
-  },
+    },
 
   start() {
     this.reset();
     document.addEventListener("keydown", e => {
       e.preventDefault();
       if (e.keyCode === 83) {
-        // debugger
         this.keys.s = true;
         this.isPaused = !this.isPaused;
 
@@ -143,7 +145,10 @@ const game = {
         this.player.posY < rival.posY + rival.height &&
         this.player.posY + this.player.height > rival.posY) {
         this.player.stamina -= rival.strenght
-        // APlicar sonido tackle
+        const tackleAudio = new Howl({
+          src: ['./sounds/Tackle.m4a'],
+          volume: 0.4,
+        });
       }
     })
   },
@@ -156,7 +161,6 @@ const game = {
     if (this.framesCounter % 150 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
-    console.log(this.powerUps)
   },
 
   getPowerUp() {
@@ -167,7 +171,11 @@ const game = {
         this.player.posY + this.player.height > powerUp.posY) {
         this.player.stamina += 30;
         this.powerUps.splice(powerUp, 1)
-        // APlicar sonido powerup
+        const powerAudio = new Howl({
+          src: ['./sounds/powerup.m4a'],
+          volume: 0.4,
+          autoplay: true
+        });
       }
     })
   },
@@ -180,27 +188,30 @@ const game = {
       document.querySelector(`#gameover`).style.display = `flex`;
       document.querySelector(`#gameover`).style.opacity = `1`;
       document.querySelector(`#gameover h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
-      document.querySelector(`.tryagain`).addEventListener("click", function () {
-        document.location.reload(true)
+      document.querySelector(`.tryagain`).addEventListener("click", function () {document.location.reload(true)});
+      const gameOverSound = new Howl({
+        src: ['./sounds/gameover.m4a'],
+        volume: 0.4,
+        autoplay: true
       });
-      // Aplicar sonido Gameover
     }
   },
 
   touchdown() {
-    if (this.player.posY < 90 && this.background.posY >= 0) {
+    if (this.player.posY < 100 && this.background.posY >= 0) {
       clearInterval(this.interval);
       this.canvas.style.opacity = `0`;
       this.canvas.style.display = `none`;
       document.querySelector(`#touchdown`).style.display = `flex`;
       document.querySelector(`#touchdown`).style.opacity = `1`;
       document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score + this.player.stamina)}.`
-      document.querySelector(`.repeat`).addEventListener("click", function () {
-        document.location.reload(true)
+      document.querySelector(`.repeat`).addEventListener("click", function () {document.location.reload(true)});
+      const tdAudio = new Howl({
+        src: ['./sounds/Touchdown.mp3'],
+        volume: 0.4,
+        autoplay: true
       });
     }
-    // APLICAR SONIDO TOUCHDOWN
-
   },
 
   drawScore() {
