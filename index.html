@@ -13,12 +13,11 @@
     <script src="js/rivals.js"></script>
     <script src="js/powerUps.js"></script>
     <script src="js/scoreboard.js"></script>
-    <script> src="js/sound.js"</script>
+    <script src="js/sound.js"></script>
     <script src="js/game.js"></script>
     <script src="js/script.js"></script>
 </head>
 <body>
-    <audio src="./sounds/Intro.m4a"></audio>
     <div id="touchdown">
         <h2>TOUCHDOWN!</h2>
         <img src="./img/TD.gif" alt="Homer Celebrate">
@@ -29,13 +28,18 @@
         <h2>Try again!</h2>
         <img src="./img/gameover.gif" alt="">
         <h3></h3>
-        <button class="repeat">Try again!</button>
+        <button class="tryagain">Try again!</button>
     </div>
-    <main id="home">
-        <div id="logo">
-            <h1>1st & Goal</h1>
+    <div id="pause">
+        <h2>Are you a quitter??</h2>
+        <img src="./img/continue.gif" alt="">
+        <h3>Press 'S' to continue</h3>
+    </div>
+    <main id="home" class="noselect">
+        <div id="logo" class="noselect">
+            <h1 class="noselect">1st & Goal</h1>
         </div>
-            <h2>Press Space</h2>
+            <h2 class="noselect">Press Space</h2>
     </main>
     <canvas id="Board"></canvas>
 </body>

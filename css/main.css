@@ -1,4 +1,14 @@
-body {
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+  }
+  
+  body {
     font-family: 'Bangers', cursive;
     background-color: rgb(6, 75, 6);
     display: flex;
@@ -116,4 +126,53 @@ canvas {
 
 .repeat:focus {
     border: 0;
+}
+.tryagain {
+    padding: 15px;
+    margin: 20px 0 10px 0;
+    font-size: 20px;
+    color: black;
+    background: radial-gradient(darkgoldenrod,gray);
+    border-radius: 40px;
+}
+
+.tryagain:hover {
+    cursor:pointer;
+    border: 1px solid black;
+}
+
+.tryagain:focus {
+    border: 0;
+}
+
+#pause {
+    opacity: 0;
+    transition: 2s;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background:radial-gradient(darkgoldenrod,rgb(12, 12, 209));
+    padding: 30px 80px 20px 80px;
+    color:darkgoldenrod;
+    border-radius: 40px;
+    box-shadow: 5px 10px #888888;;
+    font-size: 100px;
+    margin-top: 40px;
+}
+#pause h3 {
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+
+#pause img {
+    border-radius: 40px;
+    margin-top: 40px;
+    border: 3px solid black;
+
+}
+
+#home * {
+    pointer-events: none;
 }
