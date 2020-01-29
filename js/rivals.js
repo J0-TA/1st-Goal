@@ -16,8 +16,8 @@ class Rival {
         this.image.frames = 7;
         this.image.framesIndex = 0;
 
-        this.velX = 1.8
-        this.velY = 0.7
+        this.velX = 1.5
+        this.velY = 0.6
 
         this.strenght = 0.5;
         this.playerX = playerX;
@@ -71,10 +71,10 @@ class DefensiveLine extends Rival {
         this.image.frames = 7;
         this.image.framesIndex = 0;
 
-        this.velX = 1.2
-        this.velY = 0.5
+        this.velX = 1
+        this.velY = 0.3
 
-        this.strenght = 1;
+        this.strenght = 3;
         this.playerX = playerX;
         this.playerY = playerY;  
     }

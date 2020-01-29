@@ -51,7 +51,7 @@ canvas {
     justify-content: center;
     align-items: center;
     background:radial-gradient(rgb(85, 86, 185),rgb(12, 12, 209));
-    padding: 30px 80px 80px 80px;
+    padding: 30px 80px 20px 80px;
     color:darkgoldenrod;
     border-radius: 40px;
     box-shadow: 5px 10px #888888;;
@@ -81,7 +81,7 @@ canvas {
     background:radial-gradient(gray,darkred);
     width: 700;
     height: 620;
-    padding: 30px 80px 80px 80px;
+    padding: 30px 80px 20px 80px;
     color:darkgoldenrod;
     border-radius: 40px;
     box-shadow: 5px 10px #888888;;
@@ -98,4 +98,18 @@ canvas {
     border-radius: 40px;
     margin-top: 40px;
     border: 3px solid black;
+}
+
+.repeat {
+    padding: 15px;
+    margin: 20px 0 10px 0;
+    font-size: 20px;
+    color: black;
+    background: radial-gradient(darkgoldenrod,gray);
+    border-radius: 40px;
+}
+
+.repeat:hover {
+    cursor:pointer;
+    border: 1px solid black;
 }

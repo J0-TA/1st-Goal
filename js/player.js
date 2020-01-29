@@ -46,12 +46,12 @@ class Player {
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
             this.posY -= this.velY *2; 
-            this.stamina -= 1
+            this.stamina -= 1.5
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
             this.posY += this.velY * 2;
-            if (this.stamina < 150){ this.stamina += 0.2}
+            if (this.stamina < 150){ this.stamina += 0.3}
         } this.posY -= this.velY
-        this.stamina -=0.1
+        this.stamina -= 0.3
         if (this.posY < 50) {this.posY = 50;
        } 
     }
@@ -66,12 +66,12 @@ class Player {
     }
     jumpLeft(){
       this.posX -= 80
-      this.stamina -= 5
+      this.stamina -= 10
     }
 
     jumpRight(){
       this.posX += 80
-      this.stamina -= 5
+      this.stamina -= 10
     }
 
     setListeners() {

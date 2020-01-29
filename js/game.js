@@ -6,6 +6,7 @@ const game = {
   FPS: 60,
   framesCounter: 0,
   rivals: [],
+  powerUps: [],
   score: 0,
   keys: {
     arrowUp: false,
@@ -25,6 +26,7 @@ const game = {
     this.setDimensions();
     scoreboard.init(this.ctx);
     this.start();
+    //iniciar audio juego
   },
 
   start() {
@@ -40,6 +42,8 @@ const game = {
       this.gameOver();
       this.touchdown();
       this.tackles();
+      this.generatePowerUps();
+      this.getPowerUp()
       this.score += 0.1;
       this.drawScore();
     }, 1000 / this.FPS);
@@ -57,18 +61,20 @@ const game = {
     this.background.draw();
     this.player.draw();
     this.rivals.forEach(rival => rival.draw());
+    this.powerUps.forEach(obs => obs.draw());
     this.drawStamine();
   },
 
   moveAll() {
     this.background.move();
     this.player.move();
+    this.powerUps.forEach(obs => obs.move());
     this.rivals.forEach(rival => {
       if (rival.posY < this.player.posY) {
-        rival.posY += rival.velY*4
+        rival.posY += rival.velY*4.5
       }
       if (rival.posY > this.player.posY) {
-        rival.posY -= rival.velY*0.8
+        rival.posY -= rival.velY*0.6
       }
       if (rival.posX < this.player.posX) {
         rival.posX += rival.velX
@@ -82,10 +88,10 @@ const game = {
   reset() {
     this.background = new Background(this.ctx);
     this.player = new Player(this.ctx, this.keys);
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 500)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 500)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 500)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(0, - 500)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, - 200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, - 200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, - 200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, - 200)))
     this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 1600)))
     this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 1600)))
     this.rivals.push(new Rival (this.ctx, randomInt(120, 1200), randomInt(- 1000, - 1600)))
@@ -93,6 +99,7 @@ const game = {
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
     this.rivals.push(new DefensiveBack (this.ctx, randomInt(120, 1200), randomInt(- 1800, - 2200)))
+    this.obstacles = [];
   },
 
   tackles() {
@@ -102,12 +109,32 @@ const game = {
       this.player.posY < rival.posY + rival.height && 
       this.player.posY + this.player.height > rival.posY) {
         this.player.stamina -= rival.strenght
+        // APlicar sonido tackle
       }
     })
   },
   
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
+  },
+  
+  generatePowerUps() {
+    if (this.framesCounter % 150 == 0) {
+      this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
+    } console.log(this.powerUps)
+  },
+
+  getPowerUp() {
+    this.powerUps.some(powerUp => {
+    if(this.player.posX < powerUp.posX + powerUp.width  && 
+      this.player.posX + this.player.width  > powerUp.posX &&
+      this.player.posY < powerUp.posY + powerUp.height && 
+      this.player.posY + this.player.height > powerUp.posY) {
+        this.player.stamina += 30;
+        this.powerUps.splice(powerUp)
+        // APlicar sonido powerup
+      }
+    })
   },
 
   gameOver() {
@@ -117,6 +144,7 @@ const game = {
     document.querySelector(`#gameover`).style.display = `flex`;
     document.querySelector(`#gameover`).style.opacity = `1`;
     document.querySelector(`#gameover h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
+    // Aplicar sonido Gameover
   }
   },
 
@@ -126,16 +154,17 @@ const game = {
     this.canvas.style.opacity = `0`;
     document.querySelector(`#touchdown`).style.display = `flex`;
     document.querySelector(`#touchdown`).style.opacity = `1`;
-    document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
+    document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score + this.player.stamina)}.`
+    }
     // APLICAR SONIDO TOUCHDOWN
-  }
+  
   },
 
   drawScore() {
     scoreboard.update(this.score);
   },
   drawStamine(){
-  this.ctx.fillText(`Stamina`, 1050, 50);
+  this.ctx.fillText(`Stamina`, game.width -400, 50);
   this.ctx.fillStyle="#1AACD7";
   this.ctx.fillRect(game.width-200,25,(this.player.stamina/1500)*150,25);
   this.ctx.strokeStyle = "black";
