@@ -2,7 +2,7 @@
 
 Videogame designed in Canvas & JS Vanilla. Sounds applied with Howler.js library.
 
-The videogame consist in a Football play. You just have to score a Touchdown agains all the rival defense (4 defensive lines,linebackers & 4 defensive backs).
+The videogame consist in a Football play. You just have to score a Touchdown agains all the rival defense (4 defensive lines, linebackers & 4 defensive backs).
 
 When any rival player hits you, you're stamina will decrease, but don't worry, you can gain a little catching powerUps!!.
 
