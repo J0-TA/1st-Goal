@@ -135,7 +135,7 @@ const game = {
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    this.tackleAudio = new Howl({src: ['./sounds/HardTackle.m4a'],volume: 1,});
+    g
     this.powerAudio = new Howl({src: ['./sounds/powerup.mp3'],volume: 0.6,});
   },
   
