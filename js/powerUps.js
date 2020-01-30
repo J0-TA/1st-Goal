@@ -10,7 +10,7 @@ class PowerUp {
       this.posX = posX;
       this.posY = posY;
   
-      this.velY = 1;
+      this.velY = 2;
     }
   
     draw() {
@@ -19,5 +19,6 @@ class PowerUp {
   
     move() {
       this.posY += this.velY;
+      this.posX += randomInt(-2, 2)
     }
   }

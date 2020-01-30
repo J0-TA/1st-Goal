@@ -156,7 +156,7 @@ const game = {
   },
 
   generatePowerUps() {
-    if (this.framesCounter % 400 == 0) {
+    if (this.framesCounter % 200 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
   },
