@@ -10,12 +10,13 @@
   
   body {
     font-family: 'Bangers', cursive;
-    background-color: rgb(6, 75, 6);
+    background: linear-gradient(rgb(6, 75, 6), black);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: whitesmoke
+    color: whitesmoke;
+    height: 100vh;
 }
 
 main {

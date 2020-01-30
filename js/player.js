@@ -20,7 +20,7 @@ class Player {
         
         this.setListeners();
 
-        this.stamina = 1500;
+        this.stamina = 1000;
     }
 
     draw() {
@@ -66,9 +66,9 @@ class Player {
     }
     jumpLeft(){
       this.posX -= 80
-      this.stamina -= 10
+      this.stamina -= 50
       const jumpSound = new Howl({
-        src: ['sounds/boing.m4a'],
+        src: ['sounds/boing.mp3'],
         volume: 0.4,
         autoplay: true
       });
@@ -76,9 +76,9 @@ class Player {
 
     jumpRight(){
       this.posX += 80
-      this.stamina -= 10
+      this.stamina -= 50
       const jumpSound = new Howl({
-        src: ['sounds/boing.m4a'],
+        src: ['sounds/boing.mp3'],
         volume: 0.4,
         autoplay: true
       });

@@ -27,11 +27,10 @@ const game = {
     this.canvas = document.getElementById("Board");
     this.ctx = this.canvas.getContext("2d");
     this.pause = document.querySelector(`#pause`)
-
     this.setDimensions();
     scoreboard.init(this.ctx);
     const music = new Howl({
-      src: ['sounds/Intro.m4a'],
+      src: ['./sounds/Intro.m4a'],
       autoplay: true,
       loop: true,
       volume: 0.2,
@@ -136,7 +135,10 @@ const game = {
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
+    this.tackleAudio = new Howl({src: ['./sounds/HardTackle.m4a'],volume: 1,});
+    this.powerAudio = new Howl({src: ['./sounds/powerup.mp3'],volume: 0.6,});
   },
+  
 
   tackles() {
     this.rivals.some(rival => {
@@ -144,11 +146,7 @@ const game = {
         this.player.posX + this.player.width > rival.posX &&
         this.player.posY < rival.posY + rival.height &&
         this.player.posY + this.player.height > rival.posY) {
-        this.player.stamina -= rival.strenght
-        const tackleAudio = new Howl({
-          src: ['./sounds/Tackle.m4a'],
-          volume: 0.4,
-        });
+        this.player.stamina -= rival.strenght;
       }
     })
   },
@@ -158,7 +156,7 @@ const game = {
   },
 
   generatePowerUps() {
-    if (this.framesCounter % 150 == 0) {
+    if (this.framesCounter % 300 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
   },
@@ -169,13 +167,9 @@ const game = {
         this.player.posX + this.player.width > powerUp.posX &&
         this.player.posY < powerUp.posY + powerUp.height &&
         this.player.posY + this.player.height > powerUp.posY) {
-        this.player.stamina += 30;
+        this.player.stamina += 100;
         this.powerUps.splice(powerUp, 1)
-        const powerAudio = new Howl({
-          src: ['./sounds/powerup.m4a'],
-          volume: 0.4,
-          autoplay: true
-        });
+        this.powerAudio.play();
       }
     })
   },
@@ -194,6 +188,7 @@ const game = {
         volume: 0.4,
         autoplay: true
       });
+      this.tackleAudio.play();
     }
   },
 
@@ -220,11 +215,10 @@ const game = {
   drawStamine() {
     this.ctx.fillText(`Stamina`, game.width - 400, 50);
     this.ctx.fillStyle = "#1AACD7";
-    this.ctx.fillRect(game.width - 200, 25, (this.player.stamina / 1500) * 150, 25);
+    this.ctx.fillRect(game.width - 200, 25, (this.player.stamina / 1000) * 150, 25);
     this.ctx.strokeStyle = "black";
     this.ctx.lineWidth = 2;
-    this.ctx.strokeRect(game.width - 200, 25, (this.player.stamina / 1500) * 150, 25)
+    this.ctx.strokeRect(game.width - 200, 25, (this.player.stamina / 1000) * 150, 25)
   }
 };
-
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
