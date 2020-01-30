@@ -12,7 +12,7 @@
     font-family: 'Bangers', cursive;
     background: linear-gradient(rgb(6, 75, 6), black);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     color: whitesmoke;
@@ -32,7 +32,7 @@ main {
 h1 {
     padding-top: 200px;
     font-size: 300px;
-    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    text-shadow: -5px 0 black, 0 5px black, 5px 0 black, 0 -5px black;
     
 }
 main h2 {
@@ -52,6 +52,7 @@ canvas {
     top: 0;
     opacity: 1;
     transition: 2s;
+    cursor: none;
 }
 
 #touchdown {
@@ -121,7 +122,7 @@ canvas {
 }
 
 .repeat:hover {
-    cursor:pointer;
+    cursor: pointer;
     border: 1px solid black;
 }
 
@@ -138,7 +139,7 @@ canvas {
 }
 
 .tryagain:hover {
-    cursor:pointer;
+    cursor: pointer;
     border: 1px solid black;
 }
 
@@ -159,7 +160,7 @@ canvas {
     border-radius: 40px;
     box-shadow: 5px 10px #888888;;
     font-size: 100px;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 #pause h3 {
     font-size: 50px;

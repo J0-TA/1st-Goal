@@ -109,7 +109,7 @@ const game = {
         rival.posY += rival.velY * 4.5
       }
       if (rival.posY > this.player.posY) {
-        rival.posY -= rival.velY * 0.6
+        rival.posY -= rival.velY * 0.4
       }
       if (rival.posX < this.player.posX) {
         rival.posX += rival.velX
@@ -124,17 +124,17 @@ const game = {
     this.background = new Background(this.ctx);
     this.powerUps = [];
     this.player = new Player(this.ctx, this.keys);
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(50, -200)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1000, -1600)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1000, -1600)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1000, -1600)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-1800, -2200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
+    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
+    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
+    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.tackleAudio = new Howl({src: ['./sounds/HardTackle.m4a'],volume: 1,});
     this.powerAudio = new Howl({src: ['./sounds/powerup.mp3'],volume: 0.6,});
   },
@@ -142,11 +142,12 @@ const game = {
 
   tackles() {
     this.rivals.some(rival => {
-      if (this.player.posX < rival.posX + rival.width &&
-        this.player.posX + this.player.width > rival.posX &&
-        this.player.posY < rival.posY + rival.height &&
-        this.player.posY + this.player.height > rival.posY) {
+      if (this.player.posX < rival.posX + 30 &&
+        this.player.posX + 30 > rival.posX &&
+        this.player.posY < rival.posY + 30 &&
+        this.player.posY + 50 > rival.posY) {
         this.player.stamina -= rival.strenght;
+        // this.tackleAudio.play();
       }
     })
   },
