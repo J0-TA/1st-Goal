@@ -1,4 +1,4 @@
-# 1st-Goal
+# 1st & Goal
 
 Videogame designed in Canvas & JS Vanilla. Sounds applied with Howler.js library.
 
