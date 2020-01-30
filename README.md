@@ -1,4 +1,4 @@
-# 1st-Goal
+# 1st & Goal
 
 Videogame designed in Canvas & JS Vanilla. Sounds applied with Howler.js library.
 
@@ -11,11 +11,15 @@ Your player will move foward automatically, but you can boost your speed with a 
 Controls:
 
 Left Arrow: Move Left.
+
 Right Arrow: Move Right.
+
 Down Arrow: Take a breath. Your player will gain stamina but yo wont move at all.
+
 Up Arrow: Boost. You will go faster, but watch your stamina!
 
 A: Jump Left. Cost stamina.
+
 D: Jump Right. Cost stamina.
 
 S: Pause.
