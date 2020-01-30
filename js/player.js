@@ -45,12 +45,12 @@ class Player {
         } if (game.keys.arrowRight === true && this.posX < 1200){
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
-            this.posY -= this.velY *3; 
-            this.stamina -= 3
+            this.posY -= this.velY *2; 
+            this.stamina -= 4
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
-            this.posY += this.velY * 4;
-            if (this.stamina < 150){ this.stamina += 1}
-        } this.posY -= this.velY
+            this.posY += this.velY * 3;
+            if (this.stamina > 1000){ this.stamina += 0.5}
+        } this.posY -= 0.5
         this.stamina -= 0.3
         if (this.posY < 50) {this.posY = 50;
        } 

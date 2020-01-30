@@ -147,7 +147,6 @@ const game = {
         this.player.posY < rival.posY + 30 &&
         this.player.posY + 50 > rival.posY) {
         this.player.stamina -= rival.strenght;
-        // this.tackleAudio.play();
       }
     })
   },
@@ -157,7 +156,7 @@ const game = {
   },
 
   generatePowerUps() {
-    if (this.framesCounter % 300 == 0) {
+    if (this.framesCounter % 400 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
   },
@@ -168,7 +167,8 @@ const game = {
         this.player.posX + this.player.width > powerUp.posX &&
         this.player.posY < powerUp.posY + powerUp.height &&
         this.player.posY + this.player.height > powerUp.posY) {
-        this.player.stamina += 100;
+        if (this.stamina > 900) {this.player.stamina = 1000}
+        else {this.player.stamina += 100};
         this.powerUps.splice(powerUp, 1)
         this.powerAudio.play();
       }
@@ -194,7 +194,7 @@ const game = {
   },
 
   touchdown() {
-    if (this.player.posY < 100 && this.background.posY >= 0) {
+    if (this.player.posY < 90 && this.background.posY >= 0) {
       clearInterval(this.interval);
       this.canvas.style.opacity = `0`;
       this.canvas.style.display = `none`;

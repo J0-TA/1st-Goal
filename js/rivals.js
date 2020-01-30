@@ -98,7 +98,7 @@ class DefensiveBack extends Rival {
         this.image.frames = 7;
         this.image.framesIndex = 0;
 
-        this.velX = 2.2
+        this.velX = 2
         this.velY = 1.2
 
         this.strenght = 5;
