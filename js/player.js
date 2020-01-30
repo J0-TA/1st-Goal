@@ -49,7 +49,8 @@ class Player {
             this.stamina -= 4
         } if (game.keys.arrowDown === true && this.posY < game.height - 200){
             this.posY += this.velY * 3;
-            if (this.stamina > 1000){ this.stamina += 0.5}
+            if (this.stamina > 1000){this.stamina = 1000}
+            else {this.stamina += 0.8}
         } this.posY -= 0.5
         this.stamina -= 0.3
         if (this.posY < 50) {this.posY = 50;

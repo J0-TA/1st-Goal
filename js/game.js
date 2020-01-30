@@ -33,7 +33,7 @@ const game = {
       src: ['./sounds/Intro.m4a'],
       autoplay: true,
       loop: true,
-      volume: 0.2,
+      volume: 0.3,
     });
     this.start();
     },
@@ -135,7 +135,7 @@ const game = {
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    g
+    this.tackleAudio = new Howl({src: ['./sounds/HardTackle.m4a'],volume: 1,});
     this.powerAudio = new Howl({src: ['./sounds/powerup.mp3'],volume: 0.6,});
   },
   
@@ -218,8 +218,8 @@ const game = {
     this.ctx.fillStyle = "#1AACD7";
     this.ctx.fillRect(game.width - 200, 25, (this.player.stamina / 1000) * 150, 25);
     this.ctx.strokeStyle = "black";
-    this.ctx.lineWidth = 2;
-    this.ctx.strokeRect(game.width - 200, 25, (this.player.stamina / 1000) * 150, 25)
+    this.ctx.lineWidth = 3;
+    this.ctx.strokeRect(game.width - 200, 25, 150, 25)
   }
 };
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
