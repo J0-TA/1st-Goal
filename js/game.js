@@ -97,10 +97,10 @@ const game = {
     this.powerUps.forEach(obs => obs.move());
     this.rivals.forEach(rival => {
       if (rival.posY < this.player.posY) {
-        rival.posY += rival.velY * 4.5
+        rival.posY += rival.velY * 4.6
       }
       if (rival.posY > this.player.posY) {
-        rival.posY -= rival.velY * 0.4
+        rival.posY -= rival.velY * 1.1
       }
       if (rival.posX < this.player.posX) {
         rival.posX += rival.velX
