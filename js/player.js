@@ -68,21 +68,15 @@ class Player {
     jumpLeft(){
       this.posX -= 80
       this.stamina -= 50
-      const jumpSound = new Howl({
-        src: ['./sounds/boing.mp3'],
-        volume: 0.4,
-        autoplay: true
-      });
+      jumpSound.play();
+      if (this.posX < game.background.posX) this.posX = game.background.posX
     }
 
     jumpRight(){
       this.posX += 80
       this.stamina -= 50
-      const jumpSound = new Howl({
-        src: ['./sounds/boing.mp3'],
-        volume: 0.4,
-        autoplay: true
-      });
+      jumpSound.play();
+      if (this.posX > game.background.width) this.posX = game.background.width
     }
 
     setListeners() {

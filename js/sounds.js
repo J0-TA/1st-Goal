@@ -19,3 +19,7 @@ const tdAudio = new Howl({
   src: ['./sounds/Touchdown.mp3'],
   volume: 0.4,
 });
+const jumpSound = new Howl({
+    src: ['sounds/boing.mp3'],
+    volume: 0.4,
+});
