@@ -114,17 +114,17 @@ const game = {
     this.background = new Background(this.ctx);
     this.powerUps = [];
     this.player = new Player(this.ctx, this.keys);
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
-    this.rivals.push(new DefensiveLine(this.ctx, randomInt(120, 1200), randomInt(100, -200)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
-    this.rivals.push(new Rival(this.ctx, randomInt(120, 1200), randomInt(-1500, -2300)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(100, -200)))
+    this.rivals.push(new DefensiveLine(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(100, -200)))
+    this.rivals.push(new Rival(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-1500, -2300)))
+    this.rivals.push(new Rival(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-1500, -2300)))
+    this.rivals.push(new Rival(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-1500, -2300)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
+    this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
   },
   tackles() {
     this.rivals.some(rival => {

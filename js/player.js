@@ -40,9 +40,9 @@ class Player {
     }
 
     move() {
-        if (game.keys.arrowLeft === true && this.posX > 120){
+        if (game.keys.arrowLeft === true && this.posX > game.background.posX){
             this.posX -= this.velX;
-        } if (game.keys.arrowRight === true && this.posX < 1200){
+        } if (game.keys.arrowRight === true && this.posX < game.background.width){
             this.posX += this.velX;
         } if (game.keys.arrowUp === true){
             this.posY -= this.velY *2; 
