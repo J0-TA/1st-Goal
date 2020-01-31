@@ -22,6 +22,7 @@ const game = {
     d: false,
     s: false
   },
+
   init() {
     this.canvas = document.getElementById("Board");
     this.ctx = this.canvas.getContext("2d");
@@ -32,6 +33,7 @@ const game = {
     music.play();
     this.start();
     },
+
   start() {
     this.reset();
     document.addEventListener("keydown", e => {
@@ -76,6 +78,7 @@ const game = {
 
     }, 1000 / this.FPS);
   },
+
   setDimensions() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -83,6 +86,7 @@ const game = {
     this.canvas.height = this.height;
     document.querySelector('main').style.display = "none";
   },
+
   drawAll() {
     this.background.draw();
     this.powerUps.forEach(obs => obs.draw());
@@ -91,6 +95,7 @@ const game = {
     this.drawScore();
     this.drawStamine();
   },
+
   moveAll() {
     this.background.move();
     this.player.move();
@@ -110,6 +115,7 @@ const game = {
       }
     });
   },
+
   reset() {
     this.background = new Background(this.ctx);
     this.powerUps = [];
@@ -126,6 +132,7 @@ const game = {
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(this.background.posX, this.background.width), randomInt(-2500, -4000)))
   },
+
   tackles() {
     this.rivals.some(rival => {
       if (this.player.posX < rival.posX + 30 &&
@@ -136,14 +143,17 @@ const game = {
       }
     })
   },
+
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
+
   generatePowerUps() {
     if (this.framesCounter % 200 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
   },
+
   getPowerUp() {
     this.powerUps.some(powerUp => {
       if (this.player.posX < powerUp.posX + 30 &&
@@ -157,6 +167,7 @@ const game = {
       }
     })
   },
+
   gameOver() {
     if (this.player.stamina <= 0) {
       clearInterval(this.interval);
@@ -170,6 +181,7 @@ const game = {
       tackleAudio.play();
     }
   },
+
   touchdown() {
     if (this.player.posY < 90 && this.background.posY >= 0) {
       clearInterval(this.interval);
@@ -182,11 +194,14 @@ const game = {
       tdAudio.play();
     }
   },
+
   drawScore() {
     scoreboard.update(this.score);
   },
+
   drawStamine() {
     staminaBar.update(this.player.stamina)
   }
 };
+
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);

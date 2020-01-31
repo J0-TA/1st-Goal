@@ -4,8 +4,6 @@ function gameStart(e) {
         game.init();
     }
 }
-
 window.onload = () => {
     window.addEventListener("keyup", gameStart)
 }
-

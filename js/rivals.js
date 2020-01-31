@@ -4,21 +4,15 @@ class Rival {
         this.size = 2.2;
         this.width = 110 * this.size/2;
         this.height = 120 * this.size/2;
-
-
         this.image = new Image();
         this.image.src = "./img/rivalsSprite.png";
-
         this.posX = posX
         this.posY = posY
-        
         this.animate(game.framesCounter);
         this.image.frames = 7;
         this.image.framesIndex = 0;
-
         this.velX = 1.8
         this.velY = 0.7
-
         this.strenght = 15;
         this.playerX = playerX;
         this.playerY = playerY;
@@ -36,11 +30,8 @@ class Rival {
             this.width,
             this.height
         );
-
         this.animate(game.framesCounter);
     }
-
-
 
     animate(framesCounter) {
         if (framesCounter % 12 == 0) {
@@ -59,21 +50,15 @@ class DefensiveLine extends Rival {
         this.size = 2.5;
         this.width = 110 * this.size/2;
         this.height = 120 * this.size/2;
-
-
         this.image = new Image();
         this.image.src = "./img/rivalsSprite.png";
-
         this.posX = posX
         this.posY = posY
-        
         this.animate(game.framesCounter);
         this.image.frames = 7;
         this.image.framesIndex = 0;
-
         this.velX = 1.2
         this.velY = 0.5
-
         this.strenght = 30;
         this.playerX = playerX;
         this.playerY = playerY;  
@@ -86,21 +71,15 @@ class DefensiveBack extends Rival {
         this.size = 1.8;
         this.width = 110 * this.size/2;
         this.height = 120 * this.size/2;
-
-
         this.image = new Image();
         this.image.src = "./img/rivalsSprite.png";
-
         this.posX = posX
         this.posY = posY
-        
         this.animate(game.framesCounter);
         this.image.frames = 7;
         this.image.framesIndex = 0;
-
         this.velX = 2
         this.velY = 1.2
-
         this.strenght = 5;
         this.playerX = playerX;
         this.playerY = playerY;  

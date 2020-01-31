@@ -1,146 +1,141 @@
 class Player {
-    constructor(ctx, keys) {
-        this.ctx = ctx;
-        this.width = 130;
-        this.height = 143;
+  constructor(ctx, keys) {
+    this.ctx = ctx;
+    this.width = 130;
+    this.height = 143;
+    this.image = new Image();
+    this.image.src = "./img/playerSprite.png";
+    this.posX = game.width / 2 - this.width / 2;
+    this.posY = game.height - 200;
+    this.animate(game.framesCounter);
+    this.image.frames = 7;
+    this.image.framesIndex = 0;
+    this.keys = keys;
+    this.velX = 2.5;
+    this.velY = 1;        
+    this.setListeners();
+    this.stamina = 1000;
+  }
 
-        this.image = new Image();
-        this.image.src = "./img/playerSprite.png";
+  draw() {
+    this.ctx.drawImage(
+      this.image,
+      this.image.framesIndex * Math.floor(this.image.width / this.image.frames),
+      0,
+      Math.floor(this.image.width / this.image.frames),
+      this.image.height,
+      this.posX,
+      this.posY,
+      this.width,
+      this.height
+    );
 
-        this.posX = game.width / 2 - this.width / 2;
-        this.posY = game.height - 200;
-        
-        this.animate(game.framesCounter);
-        this.image.frames = 7;
-        this.image.framesIndex = 0;
+    this.animate(game.framesCounter);
+  }
 
-        this.keys = keys;
-        this.velX = 2.5;
-        this.velY = 1;
-        
-        this.setListeners();
+  move() {
+    if (game.keys.arrowLeft === true && this.posX > game.background.posX){
+        this.posX -= this.velX;
+    } if (game.keys.arrowRight === true && this.posX < game.background.width){
+        this.posX += this.velX;
+    } if (game.keys.arrowUp === true){
+        this.posY -= this.velY *2; 
+        this.stamina -= 4
+    } if (game.keys.arrowDown === true && this.posY < game.height - 200){
+        this.posY += this.velY * 3;
+        if (this.stamina > 1000){this.stamina = 1000}
+        else {this.stamina += 0.8}
+    } this.posY -= 0.8
+    this.stamina -= 0.3
+    if (this.posY < 50) {this.posY = 50;
+    } 
+  }
+  
+  animate(framesCounter) {
+      if (framesCounter % 12 == 0) {
+          this.image.framesIndex++;
+      }
+      if (this.image.framesIndex > this.image.frames - 1) {
+          this.image.framesIndex = 0;
+      }
+  }
 
-        this.stamina = 1000;
-    }
+  jumpLeft(){
+    this.posX -= 80
+    this.stamina -= 50
+    jumpSound.play();
+    if (this.posX < game.background.posX) this.posX = game.background.posX
+  }
 
-    draw() {
-        this.ctx.drawImage(
-            this.image,
-            this.image.framesIndex * Math.floor(this.image.width / this.image.frames),
-            0,
-            Math.floor(this.image.width / this.image.frames),
-            this.image.height,
-            this.posX,
-            this.posY,
-            this.width,
-            this.height
-        );
-
-        this.animate(game.framesCounter);
-    }
-
-    move() {
-        if (game.keys.arrowLeft === true && this.posX > game.background.posX){
-            this.posX -= this.velX;
-        } if (game.keys.arrowRight === true && this.posX < game.background.width){
-            this.posX += this.velX;
-        } if (game.keys.arrowUp === true){
-            this.posY -= this.velY *2; 
-            this.stamina -= 4
-        } if (game.keys.arrowDown === true && this.posY < game.height - 200){
-            this.posY += this.velY * 3;
-            if (this.stamina > 1000){this.stamina = 1000}
-            else {this.stamina += 0.8}
-        } this.posY -= 0.8
-        this.stamina -= 0.3
-        if (this.posY < 50) {this.posY = 50;
-       } 
-    }
-
-    animate(framesCounter) {
-        if (framesCounter % 12 == 0) {
-            this.image.framesIndex++;
-        }
-        if (this.image.framesIndex > this.image.frames - 1) {
-            this.image.framesIndex = 0;
-        }
-    }
-    jumpLeft(){
-      this.posX -= 80
-      this.stamina -= 50
-      jumpSound.play();
-      if (this.posX < game.background.posX) this.posX = game.background.posX
-    }
-
-    jumpRight(){
-      this.posX += 80
-      this.stamina -= 50
-      jumpSound.play();
-      if (this.posX > game.background.width) this.posX = game.background.width
-    }
-
-    setListeners() {
-        document.addEventListener("keydown", e => {
-          e.preventDefault();
-          if (e.keyCode === 37) {
-            this.keys.arrowLeft = true;
-          }
-          if (e.keyCode === 39) {
-            this.keys.arrowRight = true;
-          }
-        });
-        document.addEventListener("keyup", e => {
-          e.preventDefault();
-          if (e.keyCode === 37) {
-            this.keys.arrowLeft = false;
-          }
-          if (e.keyCode === 39) {
-            this.keys.arrowRight = false;
-          }
-        });
-        document.addEventListener("keydown", e => {
-          e.preventDefault();
-          if (e.keyCode === 38) {
-            this.keys.arrowUp = true;
-          }
-          if (e.keyCode === 40) {
-            this.keys.arrowDown = true;
-          }
-        });
-        document.addEventListener("keyup", e => {
-          e.preventDefault();
-          if (e.keyCode === 38) {
-            this.keys.arrowUp = false;
-          }
-          if (e.keyCode === 40) {
-            this.keys.arrowDown = false;
-          }
-        });
-        document.addEventListener("keydown", e => {
-          e.preventDefault();
-          if (e.keyCode === 65) {
-            this.keys.a = true;
-            this.jumpLeft();
-          }
-        });
-        document.addEventListener("keyup", e => {
-          e.preventDefault();
-          if (e.keyCode === 65) {
-            this.keys.a = false;
-          }
-        });
-        document.addEventListener("keydown", e => {
-          e.preventDefault();
-          if (e.keyCode === 68) {
-            this.keys.d = true;
-            this.jumpRight();
-          }
-        });
-        document.addEventListener("keyup", e => {
-          e.preventDefault();
-          if (e.keyCode === 68) {
-            this.keys.d = false;
-          }
-        });
-    }
+  jumpRight(){
+    this.posX += 80
+    this.stamina -= 50
+    jumpSound.play();
+    if (this.posX > game.background.width) this.posX = game.background.width
+  }
+  
+  setListeners() {
+    document.addEventListener("keydown", e => {
+      e.preventDefault();
+      if (e.keyCode === 37) {
+        this.keys.arrowLeft = true;
+      }
+      if (e.keyCode === 39) {
+        this.keys.arrowRight = true;
+      }
+    });
+    document.addEventListener("keyup", e => {
+      e.preventDefault();
+      if (e.keyCode === 37) {
+        this.keys.arrowLeft = false;
+      }
+      if (e.keyCode === 39) {
+        this.keys.arrowRight = false;
+      }
+    });
+    document.addEventListener("keydown", e => {
+      e.preventDefault();
+      if (e.keyCode === 38) {
+        this.keys.arrowUp = true;
+      }
+      if (e.keyCode === 40) {
+        this.keys.arrowDown = true;
+      }
+    });
+    document.addEventListener("keyup", e => {
+      e.preventDefault();
+      if (e.keyCode === 38) {
+        this.keys.arrowUp = false;
+      }
+      if (e.keyCode === 40) {
+        this.keys.arrowDown = false;
+      }
+    });
+    document.addEventListener("keydown", e => {
+      e.preventDefault();
+      if (e.keyCode === 65) {
+        this.keys.a = true;
+        this.jumpLeft();
+      }
+    });
+    document.addEventListener("keyup", e => {
+      e.preventDefault();
+      if (e.keyCode === 65) {
+        this.keys.a = false;
+      }
+    });
+    document.addEventListener("keydown", e => {
+      e.preventDefault();
+      if (e.keyCode === 68) {
+        this.keys.d = true;
+        this.jumpRight();
+      }
+    });
+    document.addEventListener("keyup", e => {
+      e.preventDefault();
+      if (e.keyCode === 68) {
+        this.keys.d = false;
+      }
+    });
+  }
 }
