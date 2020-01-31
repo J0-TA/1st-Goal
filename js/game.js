@@ -71,8 +71,7 @@ const game = {
         this.tackles();
         this.generatePowerUps();
         this.getPowerUp()
-        this.score += 0.1;
-        
+        this.score += 0.1;       
       }
 
     }, 1000 / this.FPS);
