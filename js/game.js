@@ -22,22 +22,16 @@ const game = {
     d: false,
     s: false
   },
-
   init() {
     this.canvas = document.getElementById("Board");
     this.ctx = this.canvas.getContext("2d");
     this.pause = document.querySelector(`#pause`)
     this.setDimensions();
     scoreboard.init(this.ctx);
-    const music = new Howl({
-      src: ['./sounds/Intro.m4a'],
-      autoplay: true,
-      loop: true,
-      volume: 0.3,
-    });
+    staminaBar.init(this.ctx)
+    music.play();
     this.start();
     },
-
   start() {
     this.reset();
     document.addEventListener("keydown", e => {
@@ -78,12 +72,11 @@ const game = {
         this.generatePowerUps();
         this.getPowerUp()
         this.score += 0.1;
-        this.drawScore();
+        
       }
 
     }, 1000 / this.FPS);
   },
-
   setDimensions() {
     this.width = window.innerWidth;
     this.height = window.innerHeight;
@@ -91,15 +84,14 @@ const game = {
     this.canvas.height = this.height;
     document.querySelector('main').style.display = "none";
   },
-
   drawAll() {
     this.background.draw();
     this.powerUps.forEach(obs => obs.draw());
     this.player.draw();
     this.rivals.forEach(rival => rival.draw());
+    this.drawScore();
     this.drawStamine();
   },
-
   moveAll() {
     this.background.move();
     this.player.move();
@@ -119,7 +111,6 @@ const game = {
       }
     });
   },
-
   reset() {
     this.background = new Background(this.ctx);
     this.powerUps = [];
@@ -135,11 +126,7 @@ const game = {
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
     this.rivals.push(new DefensiveBack(this.ctx, randomInt(120, 1200), randomInt(-2500, -4000)))
-    this.tackleAudio = new Howl({src: ['./sounds/HardTackle.m4a'],volume: 1,});
-    this.powerAudio = new Howl({src: ['./sounds/powerup.mp3'],volume: 0.6,});
   },
-  
-
   tackles() {
     this.rivals.some(rival => {
       if (this.player.posX < rival.posX + 30 &&
@@ -150,31 +137,27 @@ const game = {
       }
     })
   },
-
   clear() {
     this.ctx.clearRect(0, 0, this.width, this.height);
   },
-
   generatePowerUps() {
     if (this.framesCounter % 200 == 0) {
       this.powerUps.push(new PowerUp(this.ctx, randomInt(120, 1200), this.player.posY - randomInt(15, 100)));
     }
   },
-
   getPowerUp() {
     this.powerUps.some(powerUp => {
-      if (this.player.posX < powerUp.posX + powerUp.width &&
-        this.player.posX + this.player.width > powerUp.posX &&
-        this.player.posY < powerUp.posY + powerUp.height &&
-        this.player.posY + this.player.height > powerUp.posY) {
+      if (this.player.posX < powerUp.posX + 30 &&
+        this.player.posX + 80 > powerUp.posX &&
+        this.player.posY < powerUp.posY + 30 &&
+        this.player.posY + 80 > powerUp.posY) {
         if (this.stamina > 900) {this.player.stamina = 1000}
         else {this.player.stamina += 100};
         this.powerUps.splice(powerUp, 1)
-        this.powerAudio.play();
+        powerAudio.play();
       }
     })
   },
-
   gameOver() {
     if (this.player.stamina <= 0) {
       clearInterval(this.interval);
@@ -184,15 +167,10 @@ const game = {
       document.querySelector(`#gameover`).style.opacity = `1`;
       document.querySelector(`#gameover h3`).innerHTML = `You're score was ${Math.floor(this.score)}.`
       document.querySelector(`.tryagain`).addEventListener("click", function () {document.location.reload(true)});
-      const gameOverSound = new Howl({
-        src: ['./sounds/gameover.m4a'],
-        volume: 0.4,
-        autoplay: true
-      });
-      this.tackleAudio.play();
+      gameOverSound.play();
+      tackleAudio.play();
     }
   },
-
   touchdown() {
     if (this.player.posY < 90 && this.background.posY >= 0) {
       clearInterval(this.interval);
@@ -202,24 +180,14 @@ const game = {
       document.querySelector(`#touchdown`).style.opacity = `1`;
       document.querySelector(`#touchdown h3`).innerHTML = `You're score was ${Math.floor(this.score + this.player.stamina)}.`
       document.querySelector(`.repeat`).addEventListener("click", function () {document.location.reload(true)});
-      const tdAudio = new Howl({
-        src: ['./sounds/Touchdown.mp3'],
-        volume: 0.4,
-        autoplay: true
-      });
+      tdAudio.play();
     }
   },
-
   drawScore() {
     scoreboard.update(this.score);
   },
   drawStamine() {
-    this.ctx.fillText(`Stamina`, game.width - 400, 50);
-    this.ctx.fillStyle = "#1AACD7";
-    this.ctx.fillRect(game.width - 200, 25, (this.player.stamina / 1000) * 150, 25);
-    this.ctx.strokeStyle = "black";
-    this.ctx.lineWidth = 3;
-    this.ctx.strokeRect(game.width - 200, 25, 150, 25)
+    staminaBar.update(this.player.stamina)
   }
 };
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);

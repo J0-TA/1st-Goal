@@ -51,7 +51,7 @@ class Player {
             this.posY += this.velY * 3;
             if (this.stamina > 1000){this.stamina = 1000}
             else {this.stamina += 0.8}
-        } this.posY -= 0.5
+        } this.posY -= 0.8
         this.stamina -= 0.3
         if (this.posY < 50) {this.posY = 50;
        } 
