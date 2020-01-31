@@ -9,17 +9,17 @@ const tackleAudio = new Howl({
 });
 const powerAudio = new Howl
 ({src: ['./sounds/powerup.mp3'],
-volume: 0.6,
+volume: 0.4,
 });
 const gameOverSound = new Howl({
   src: ['./sounds/gameover.m4a'],
-  volume: 0.4,
+  volume: 0.5,
 });
 const tdAudio = new Howl({
   src: ['./sounds/Touchdown.mp3'],
-  volume: 0.4,
+  volume: 0.6,
 });
 const jumpSound = new Howl({
     src: ['sounds/boing.mp3'],
-    volume: 0.4,
+    volume: 0.3,
 });
